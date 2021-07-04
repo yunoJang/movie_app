@@ -21,14 +21,15 @@ class App extends React.Component {
     renderMovies() {
         const {movies} = this.state;
 
-        return movies.map( ({id,year,title,summary,medium_cover_image:poster})=> 
+        return movies.map( (movie)=> 
             <Movie 
-                key={id}
-                id={id}
-                year={year}
-                title={title}
-                summary={summary}
-                poster={poster}
+                key={movie.id}
+                id={movie.id}
+                year={movie.year}
+                title={movie.title}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+                genres={movie.genres}
             />)
     }
 
