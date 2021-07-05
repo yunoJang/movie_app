@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Movie from './Movie';
+import './reset.css';
+import './App.css';
 
 class App extends React.Component {
     state = {
@@ -9,9 +11,9 @@ class App extends React.Component {
     };
 
     async getMovies() {
-        const {data:{data:{movies}}} = await axios.get('https://yts-proxy.now.sh/list_movies.json?sort_by=rating');
+        const {data:{page_number:pageNumber,data:{movies}}} = await axios.get('https://yts-proxy.now.sh/list_movies.json?sort_by=rating');
 
-        this.setState({movies,isLoading : false});
+        this.setState({movies,isLoading : false, pageNumber});
     }
 
     componentDidMount() {
@@ -30,6 +32,8 @@ class App extends React.Component {
                 summary={movie.summary}
                 poster={movie.medium_cover_image}
                 genres={movie.genres}
+                rating = {movie.rating}
+                ytCode = {movie.yt_trailer_code}
             />)
     }
 
@@ -41,18 +45,16 @@ class App extends React.Component {
                 {isLoading
                     ? (
                         <div className='loader'>
-                        <span className='loader-text'>Loading...</span>
+                            <span className='loader-text'>Loading...</span>
                         </div>
                     )
                     : (
                         <div className='movies'>
-                            {this.renderMovies()};
+                            {this.renderMovies()}
                         </div>
                     )
                 }
-
             </section>
-            
         )
     }
 }

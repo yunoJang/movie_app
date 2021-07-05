@@ -1,0 +1,57 @@
+.movie {
+    position: relative;
+    display: flex;
+    width: 700px;
+    background: #fafafa;
+    margin: 35px 50px;
+    padding: 30px 25px 0px ;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 10px .5px rgba(100, 100, 100, 0.3);
+}
+
+.movie img {
+    position: relative;
+    margin-right: 35px;
+    height: 300px;
+    top: -50px;
+    box-shadow: 1px 1px 20px 0px rgba(50,50,50,.8);
+}
+.movie .title {
+    font-size: 25px;
+    margin-bottom: 7px;
+}
+.movie .year {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.movie .genres {
+    font-size: 14px;
+    color: #aaa;
+    display: flex;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+    .movie .genres>li+li::before {
+        content: ", ";
+    }
+
+.movie .rating {
+    margin-bottom: 20px;
+}
+.movie .rating>span {
+    font-weight: bold;
+    color: rgb(245, 59, 35);
+}
+.movie .trailer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 125px;
+    height: 35px;
+    background: rgb(60, 60, 60);
+    color: white;
+}
