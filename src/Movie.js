@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import './Movie.css';
+import './css/Movie.css';
 
 function Movie({year,title,summary,poster,genres,rating,ytCode}) {
-    rating = String(rating).length > 1 ? rating : `${rating}.0`;
+    rating = String(rating).length < 2 ? `${rating}.0` : rating;
     
     return (
         <div className='movie'>
@@ -15,9 +15,10 @@ function Movie({year,title,summary,poster,genres,rating,ytCode}) {
                 </ul>
                 <div className='rating'>Score : <span>{rating}</span></div>
                 <p className='summary'>{summary.slice(0,180)}...</p>
-                <div className='button-container'>
-                    <a className='trailer' href={`https://www.youtube.com/watch?v=${ytCode}`} target='_blank' rel='noreferrer'>Show Trailer</a>
-                </div>
+                {ytCode===''
+                ? ''
+                :<a className='trailer' href={`https://www.youtube.com/watch?v=${ytCode}`} target='_blank' rel='noreferrer'>Show Trailer</a>
+                }
             </div>
             
         </div>

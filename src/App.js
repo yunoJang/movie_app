@@ -1,23 +1,31 @@
 import React from 'react';
 import axios from 'axios';
 import Movie from './Movie';
-import './reset.css';
-import './App.css';
+import Paging from './Paging';
+import './css/reset.css';
+import './css/App.css';
 
 class App extends React.Component {
     state = {
         isLoading : true,
         movies : [],
+        pageNumber : 1,
     };
 
-    async getMovies() {
-        const {data:{page_number:pageNumber,data:{movies}}} = await axios.get('https://yts-proxy.now.sh/list_movies.json?sort_by=rating');
+    async getMovies(page) {
+        this.setState({isLoading : true})
+        
+        const {data:{data:{movies}}} = await axios.get(`https://yts-proxy.now.sh/list_movies.json?page=${page}&sort_by=rating`);
 
-        this.setState({movies,isLoading : false, pageNumber});
+        this.setState({
+            movies,
+            isLoading : false,
+            pageNumber : page,
+        });
     }
 
     componentDidMount() {
-        this.getMovies();
+        this.getMovies(this.state.pageNumber);
     }
 
     renderMovies() {
@@ -38,7 +46,7 @@ class App extends React.Component {
     }
 
     render() {
-        const {isLoading} = this.state;
+        const {isLoading,pageNumber} = this.state;
 
         return (
             <section className='container'>
@@ -49,9 +57,16 @@ class App extends React.Component {
                         </div>
                     )
                     : (
-                        <div className='movies'>
-                            {this.renderMovies()}
-                        </div>
+                        <main>
+                            <div className='movies'>
+                                {this.renderMovies()}
+                            </div>
+
+                            <Paging 
+                                pageNumber = {pageNumber}
+                                getMovies = {this.getMovies.bind(this)}
+                            />
+                        </main>
                     )
                 }
             </section>
