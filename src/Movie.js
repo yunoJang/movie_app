@@ -17,7 +17,7 @@ function Movie({year,title,summary,poster,genres,rating,ytCode}) {
                 <p className='summary'>{summary.slice(0,180)}...</p>
                 {ytCode===''
                 ? ''
-                :<a className='trailer' href={`https://www.youtube.com/watch?v=${ytCode}`} target='_blank' rel='noreferrer'>Show Trailer</a>
+                :<a className='trailer' href={`https://www.youtube.com/watch?v=${ytCode}`} target='_blank' rel='noreferrer'><span>Trailer</span></a>
                 }
             </div>
             

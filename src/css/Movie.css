@@ -50,8 +50,28 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 125px;
+    width: 110px;
     height: 35px;
-    background: rgb(60, 60, 60);
+    background: rgb(55, 55, 55);
     color: white;
 }
+
+.movie .trailer>span {
+    position: relative;
+    transition: 0.3s ease-out;
+}
+    .movie .trailer:hover>span {
+        padding-right: 8px;
+    }
+
+.movie .trailer>span::after {
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    content: '\00bb';
+    transition: .3s ease-out;
+}
+    .movie .trailer:hover>span::after {
+        opacity: 1;
+        right: -5px;
+    }
