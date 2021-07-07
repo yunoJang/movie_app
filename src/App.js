@@ -12,16 +12,25 @@ class App extends React.Component {
         pageNumber : 1,
     };
 
-    async getMovies(page) {
-        this.setState({isLoading : true})
-        
-        const {data:{data:{movies}}} = await axios.get(`https://yts-proxy.now.sh/list_movies.json?page=${page}&sort_by=rating`);
+    cacheMovies = new Map();
 
+    async getMovies(page) {
+        const {cacheMovies} = this;
+
+        if(!cacheMovies.has(page)) {
+            this.setState({isLoading : true})
+
+            const {data:{data:{movies}}} = await axios.get(`https://yts-proxy.now.sh/list_movies.json?page=${page}&sort_by=rating`);
+            cacheMovies.set(page,movies);
+        }
+
+        const movies =  cacheMovies.get(page);
+        
         this.setState({
-            movies,
             isLoading : false,
             pageNumber : page,
-        });
+            movies
+        })
     }
 
     componentDidMount() {
