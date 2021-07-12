@@ -1,0 +1,22 @@
+.navigation {
+    position: fixed;
+    top: 20px;
+    left: 40px;
+
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 3px;
+    background: #ffffff;
+    z-index: 1;
+    box-shadow: 0 0 10px 0 rgba(50, 50, 50, 0.3);
+}
+
+.navigation a {
+    font-size: 14px;
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #333;
+}

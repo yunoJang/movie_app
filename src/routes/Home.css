@@ -1,18 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@400;700&display=swap');
-
-html,
-body,
-#root {
-    height: 100%;
-}
-
-#root {
-    font-family: 'Encode Sans SC', sans-serif;
-}
-
 .container {
     min-height: 100vh;
-    background: #dfe5eb;
 }
 
 .loader {
